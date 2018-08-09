@@ -1,6 +1,10 @@
 package log4go
 
-import "github.com/sirupsen/logrus"
+import (
+	"strings"
+
+	"github.com/sirupsen/logrus"
+)
 
 type dmsJsonFormatter struct {
 	*logrus.JSONFormatter
@@ -11,7 +15,8 @@ func getJsonFormater(cat string) *dmsJsonFormatter {
 	return &dmsJsonFormatter{
 		JSONFormatter: &logrus.JSONFormatter{
 			FieldMap: logrus.FieldMap{
-				logrus.FieldKeyTime: "ts",
+				logrus.FieldKeyTime:  "ts",
+				logrus.FieldKeyLevel: "_level",
 			},
 		},
 		category: cat,
@@ -20,5 +25,6 @@ func getJsonFormater(cat string) *dmsJsonFormatter {
 
 func (dmf *dmsJsonFormatter) Format(ent *logrus.Entry) ([]byte, error) {
 	ent.Data["category"] = dmf.category
+	ent.Data["level"] = strings.ToUpper(ent.Level.String())
 	return dmf.JSONFormatter.Format(ent)
 }

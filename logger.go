@@ -1,7 +1,6 @@
 package log4go
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/sirupsen/logrus"
@@ -71,29 +70,4 @@ func (lg *Logger) setlevel() {
 		lg.SetLevel(logrus.InfoLevel)
 
 	}
-}
-
-//Debug formats text
-func (lg *Logger) Debug(msg string, a ...interface{}) {
-	lg.Logger.Debug(fmt.Sprintf(msg, a...))
-}
-
-//Info formats text
-func (lg *Logger) Info(msg string, a ...interface{}) {
-	lg.Logger.Info(fmt.Sprintf(msg, a...))
-}
-
-//Warn formats text
-func (lg *Logger) Warn(msg string, a ...interface{}) {
-	lg.Logger.Warn(fmt.Sprintf(msg, a...))
-}
-
-//Error formats text
-func (lg *Logger) Error(msg string, a ...interface{}) {
-	lg.Logger.Error(fmt.Sprintf(msg, a...))
-}
-
-//Panic formats text
-func (lg *Logger) Panic(msg string, a ...interface{}) {
-	lg.Logger.Panic(fmt.Sprintf(msg, a...))
 }

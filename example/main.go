@@ -29,7 +29,7 @@ func apiLogs() {
 		"users": 12,
 		"name":  "mahdi",
 	})
-	logent.Info("hi mahdi")
+	logent.Infof("hi mahdi %d", 33)
 	logent.Data["users"] = 14
 	logent.Debug("this is debug")
 	logent.Error("system got screwed")
