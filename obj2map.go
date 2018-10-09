@@ -28,8 +28,10 @@ func getFieldMap(obj interface{}) map[string]interface{} {
 		if valueField.Kind() == reflect.Ptr {
 			valueField = valueField.Elem()
 		}
-		if valueField.CanInterface() {
-			m[typeField.Name] = valueField.Interface()
+		if valueField.IsValid() {
+			if valueField.CanInterface() {
+				m[typeField.Name] = valueField.Interface()
+			}
 		}
 	}
 	return m
