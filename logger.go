@@ -21,7 +21,7 @@ func NewLogger(cat string) *Logger {
 		Logger:   logrus.New(),
 		category: cat,
 	}
-	if os.Getenv("logfmt") == "text" {
+	if os.Getenv("LOG_FMT") == "text" {
 		lg.SetTextFormatter()
 	} else {
 		lg.SetJSONFormatter()
@@ -57,7 +57,7 @@ func (lg *Logger) SetTextFormatter() {
 
 //SetJSONFormatter changes the output format to JSON
 func (lg *Logger) setlevel() {
-	switch os.Getenv("loglevel") {
+	switch os.Getenv("LOG_LEVEL") {
 	case "DEBUG":
 		lg.SetLevel(logrus.DebugLevel)
 	case "INFO":
